@@ -1,6 +1,6 @@
 # Benchmark of graphql implementations
 
-Comparing performance of `webonyx/graphql-php` and `digiaonline/graphql-php` Lexers.
+Comparing performance of `webonyx/graphql-php`, `digiaonline/graphql-php` and `railt/railt` Lexers.
 
 ## Installation
 
