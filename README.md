@@ -9,6 +9,9 @@ composer install
 ```
 
 ## Benchmarks
+
+Results here: https://github.com/SerafimArts/graphql-bench/actions
+
 ### Introspection
 Compares Lexer performance on GraphQL [introspection](benchmarks/resources/introspection.graphql) query.
 
