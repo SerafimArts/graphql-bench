@@ -1,0 +1,30 @@
+name: build
+
+on: [pull_request, push]
+
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [ubuntu, windows, macOS]
+        php: [7.4]
+    name: ${{ matrix.os }} / PHP ${{ matrix.php }} / ${{ matrix.prefer }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: PHP Installtion
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: ${{ matrix.php }}
+        extension-csv: mbstring, dom, xsl, openssl, fileinfo
+
+    - name: Composer Installation
+      run: composer update --no-interaction --prefer-dist --no-suggest
+
+    - name: Bench Introspection
+      run: composer run bench-introspection
+
+    - name: Bench BigO
+      run: composer run bench-bigo
