@@ -2,13 +2,15 @@
     "name": "vladar/graphql-bench",
     "require-dev": {
         "phpbench/phpbench": "^0.14.0",
-        "webonyx/graphql-php": "^0.12.4",
-        "digiaonline/graphql": "dev-master"
+        "webonyx/graphql-php": "^0.13",
+        "digiaonline/graphql": "dev-master@dev",
+        "railt/parser": "dev-master#853b589d4e7ef0a84908a649415d679e5b0899da"
     },
     "scripts": {
         "bench-bigo": "phpbench run benchmarks/BigOBench.php --report=aggregate",
         "bench-introspection": "phpbench run benchmarks/IntrospectionBench.php --report=aggregate"
     },
     "license": "MIT",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

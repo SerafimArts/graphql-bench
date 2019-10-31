@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @BeforeMethods({"setUp"})
  * @OutputTimeUnit("milliseconds", precision=3)
@@ -9,14 +10,15 @@
 class IntrospectionBench
 {
     private $webonyxSource;
-
     private $digiaSource;
+    private $railtSource;
 
     public function setUp()
     {
         $str = file_get_contents(__DIR__ . '/resources/introspection.graphql');
         $this->webonyxSource = new \GraphQL\Language\Source($str);
         $this->digiaSource = new \Digia\GraphQL\Language\Source($str);
+        $this->railtSource = Phplrt\Source\File::fromSources($str);
     }
 
     public function benchWebonyxIntrospectionQuery()
@@ -33,5 +35,14 @@ class IntrospectionBench
         do {
             $token = $lexer->advance();
         } while ($token->getKind() !== \Digia\GraphQL\Language\TokenKindEnum::EOF);
+    }
+
+    public function benchRailtIntrospectionQuery()
+    {
+        $lexer = (new \Railt\Parser\Runtime\Lexer())->lex($this->railtSource);
+
+        while ($lexer->valid()) {
+            $lexer->next();
+        }
     }
 }
