@@ -4,12 +4,11 @@ on: [pull_request, push]
 
 jobs:
   run:
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu, windows, macOS]
         php: [7.4]
-    name: ${{ matrix.os }} / PHP ${{ matrix.php }} / ${{ matrix.prefer }}
+    name: PHP ${{ matrix.php }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
